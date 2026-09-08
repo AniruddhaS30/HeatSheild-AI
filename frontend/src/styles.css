@@ -1,0 +1,1679 @@
+:root {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #102a43;
+  background: #f3f7f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #d9eee7 0, #f3f7f5 42%, #f7efe1 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.app-shell {
+  width: min(100% - 32px, 980px);
+  margin: 0 auto;
+  padding: 48px 0 64px;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #b45309;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 680px;
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+.intro {
+  margin-bottom: 0;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.connection-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #276749;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.connection-dot::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #38a169;
+  content: '';
+}
+
+.search-panel,
+.dashboard {
+  border: 1px solid rgba(72, 101, 129, 0.18);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 44px rgba(16, 42, 67, 0.08);
+}
+
+.search-panel {
+  padding: 20px;
+}
+
+.search-panel label {
+  display: block;
+  margin-bottom: 9px;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+}
+
+.search-row input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #bcccdc;
+  border-radius: 3px;
+  padding: 13px 14px;
+  color: #102a43;
+  background: #fff;
+}
+
+.search-row input:focus {
+  outline: 3px solid rgba(43, 122, 120, 0.22);
+  border-color: #2b7a78;
+}
+
+.search-row button {
+  border-radius: 3px;
+  padding: 0 24px;
+  color: #fff;
+  background: #1f5f5b;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+}
+
+.search-row button:hover:not(:disabled) {
+  background: #164e4a;
+}
+
+.status-message,
+.error-message {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.status-message {
+  color: #486581;
+  background: #e8f1ef;
+}
+
+.error-message {
+  color: #9b2c2c;
+  background: #fff5f5;
+  border-left: 4px solid #e53e3e;
+}
+
+.dashboard {
+  margin-top: 24px;
+  padding: clamp(20px, 4vw, 36px);
+  overflow: hidden;
+}
+
+.dashboard-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.updated-label,
+.conditions-note {
+  margin: 0;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.78rem;
+}
+
+.risk-hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(280px, 1.1fr);
+  gap: 1px;
+  color: #fff;
+  background: #102a43;
+}
+
+.risk-hero-main,
+.risk-explanation {
+  min-width: 0;
+  padding: clamp(22px, 4vw, 34px);
+}
+
+.risk-hero-main {
+  background: rgba(16, 42, 67, 0.96);
+}
+
+.risk-explanation {
+  background: rgba(16, 42, 67, 0.87);
+}
+
+.risk-hero.risk-low .risk-hero-main { background: #236b4f; }
+.risk-hero.risk-moderate .risk-hero-main { background: #9a6b16; }
+.risk-hero.risk-high .risk-hero-main { background: #b84d20; }
+.risk-hero.risk-critical .risk-hero-main { background: #a93232; }
+
+.section-kicker {
+  margin: 0 0 10px;
+  color: #f2c078;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.risk-hero .section-kicker {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.risk-score-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.risk-score-line strong {
+  font-size: clamp(3.4rem, 10vw, 6rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.risk-score-line span {
+  color: rgba(255, 255, 255, 0.72);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.95rem;
+}
+
+.risk-level-label {
+  margin-top: 16px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.risk-meter {
+  height: 7px;
+  margin-top: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.risk-meter span {
+  display: block;
+  height: 100%;
+  background: #f8d27e;
+}
+
+.contributor-list {
+  display: grid;
+  gap: 17px;
+}
+
+.contributor {
+  display: grid;
+  grid-template-columns: 9px 1fr;
+  gap: 11px;
+  align-items: start;
+}
+
+.contributor-marker {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #f2c078;
+}
+
+.contributor strong {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.9rem;
+}
+
+.contributor p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  padding: 15px 0 27px;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.76rem;
+}
+
+.legend > span:not(.legend-title) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-title {
+  color: #102a43;
+  font-weight: 700;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.risk-low { background: #2f855a; }
+.risk-moderate { background: #b7791f; }
+.risk-high { background: #c05621; }
+.risk-critical { background: #c53030; }
+
+.conditions-section {
+  border-top: 1px solid #d9e2ec;
+  padding-top: 24px;
+}
+
+.forecast-section {
+  border-top: 1px solid #d9e2ec;
+  margin-top: 30px;
+  padding-top: 24px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.section-heading h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  border: 1px solid #d9e2ec;
+  background: #d9e2ec;
+}
+
+.condition-card {
+  min-width: 0;
+  min-height: 132px;
+  padding: 17px;
+  background: #fff;
+}
+
+.condition-card span,
+.condition-card small {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.forecast-card {
+  position: relative;
+  min-width: 0;
+  min-height: 276px;
+  border: 1px solid #d9e2ec;
+  border-top: 4px solid #2f855a;
+  padding: 15px;
+  background: #fff;
+}
+
+.forecast-card.risk-moderate { border-top-color: #b7791f; }
+.forecast-card.risk-high { border-top-color: #c05621; }
+.forecast-card.risk-critical { border-top-color: #c53030; }
+
+.forecast-card-danger {
+  box-shadow: 0 8px 18px rgba(192, 86, 33, 0.13);
+}
+
+.forecast-card-topline,
+.forecast-risk-label,
+.forecast-stress,
+.forecast-feels-like {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.forecast-date {
+  color: #102a43;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.forecast-risk-dot {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #2f855a;
+}
+
+.risk-moderate .forecast-risk-dot { background: #b7791f; }
+.risk-high .forecast-risk-dot { background: #c05621; }
+.risk-critical .forecast-risk-dot { background: #c53030; }
+
+.attention-label {
+  display: inline-block;
+  margin-top: 13px;
+  color: #b84d20;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.forecast-temperatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 25px 0 20px;
+}
+
+.forecast-temperatures div {
+  min-width: 0;
+}
+
+.forecast-temperatures span,
+.forecast-feels-like span,
+.forecast-stress span,
+.forecast-risk-label span {
+  color: #829ab1;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.63rem;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.forecast-temperatures strong {
+  display: block;
+  margin-top: 5px;
+  color: #102a43;
+  font-size: 1.45rem;
+}
+
+.forecast-temperatures div + div {
+  border-left: 1px solid #d9e2ec;
+  padding-left: 10px;
+}
+
+.forecast-feels-like,
+.forecast-stress,
+.forecast-risk-label {
+  border-top: 1px solid #edf2f7;
+  padding: 11px 0;
+}
+
+.forecast-feels-like strong,
+.forecast-stress strong,
+.forecast-risk-label strong {
+  max-width: 58%;
+  overflow-wrap: anywhere;
+  color: #243b53;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.forecast-risk-label strong {
+  color: #2f855a;
+  letter-spacing: 0.05em;
+}
+
+.risk-moderate .forecast-risk-label strong { color: #9a6b16; }
+.risk-high .forecast-risk-label strong { color: #b84d20; }
+.risk-critical .forecast-risk-label strong { color: #a93232; }
+
+.anomaly-section {
+  margin-top: 30px;
+  border-top: 1px solid #d9e2ec;
+  padding-top: 24px;
+}
+
+.anomaly-subtitle {
+  max-width: 650px;
+  margin: -3px 0 18px;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.anomaly-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) minmax(210px, 1.2fr);
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #e2c8a4;
+  padding: 22px;
+  background: #fffaf2;
+}
+
+.anomaly-neutral .anomaly-comparison {
+  border-color: #cfe1dc;
+  background: #f5fbf9;
+}
+
+.comparison-temperature span,
+.baseline-grid span {
+  display: block;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.comparison-temperature strong {
+  display: block;
+  margin: 9px 0 5px;
+  color: #102a43;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.comparison-temperature small {
+  color: #829ab1;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.7rem;
+}
+
+.comparison-divider {
+  color: #9fb3c8;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.anomaly-result {
+  border-left: 1px solid #e2c8a4;
+  padding-left: 20px;
+}
+
+.anomaly-neutral .anomaly-result {
+  border-left-color: #cfe1dc;
+}
+
+.anomaly-result strong,
+.anomaly-result span {
+  display: block;
+}
+
+.anomaly-result strong {
+  color: #b45309;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  line-height: 1.15;
+}
+
+.anomaly-neutral .anomaly-result strong {
+  color: #276749;
+}
+
+.anomaly-result span {
+  margin-top: 8px;
+  color: #8a5a14;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.anomaly-neutral .anomaly-result span {
+  color: #276749;
+}
+
+.anomaly-explanation {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 14px;
+  border-left: 4px solid #d69e2e;
+  padding: 12px 15px;
+  background: #fffaf2;
+}
+
+.anomaly-neutral .anomaly-explanation {
+  border-left-color: #38a169;
+  background: #f5fbf9;
+}
+
+.anomaly-icon {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #b7791f;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.anomaly-neutral .anomaly-icon {
+  background: #2f855a;
+}
+
+.anomaly-explanation strong {
+  color: #8a5a14;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+}
+
+.anomaly-neutral .anomaly-explanation strong {
+  color: #276749;
+}
+
+.anomaly-explanation p {
+  margin: 3px 0 0;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.baseline-panel {
+  margin-top: 15px;
+  border: 1px solid #d9e2ec;
+  padding: 17px 20px;
+  background: #fff;
+}
+
+.baseline-panel .section-kicker {
+  color: #627d98;
+}
+
+.baseline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.baseline-grid strong {
+  display: block;
+  margin-top: 7px;
+  color: #102a43;
+  font-size: 1.05rem;
+}
+
+.heat-map-section {
+  margin-top: 30px;
+  border-top: 1px solid #d9e2ec;
+  padding-top: 24px;
+}
+
+.heat-map-subtitle {
+  margin: -3px 0 18px;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+}
+
+.heat-map-content {
+  overflow: hidden;
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(16, 42, 67, 0.08);
+}
+
+.heat-map-frame {
+  height: 420px;
+  background: #dcebe6;
+}
+
+.heat-map-canvas {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heat-map-status,
+.heat-map-error {
+  min-height: 120px;
+  padding: 42px 20px;
+  font-family: 'Trebuchet MS', sans-serif;
+  text-align: center;
+}
+
+.heat-map-status {
+  color: #486581;
+  background: #f5fbf9;
+}
+
+.heat-map-error {
+  color: #9b2c2c;
+  background: #fff5f5;
+}
+
+.heat-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 16px 18px 8px;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+}
+
+.heat-map-legend > span:not(.heat-map-legend-title) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heat-map-legend-title {
+  color: #102a43;
+  font-weight: 700;
+}
+
+.heat-map-legend i {
+  width: 9px;
+  height: 9px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(16, 42, 67, 0.14);
+}
+
+.heat-map-note {
+  margin: 8px 18px 17px;
+  color: #829ab1;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.heat-map-popup strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #102a43;
+  font-size: 1rem;
+}
+
+.heat-map-popup dl {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  min-width: 180px;
+}
+
+.heat-map-popup dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.heat-map-popup dt,
+.heat-map-popup dd {
+  margin: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+}
+
+.heat-map-popup dt {
+  color: #627d98;
+}
+
+.heat-map-popup dd {
+  color: #102a43;
+  font-weight: 700;
+  text-align: right;
+}
+
+.heat-map-popup .popup-risk-low { color: #2f855a; }
+.heat-map-popup .popup-risk-moderate { color: #9a6b16; }
+.heat-map-popup .popup-risk-high { color: #b84d20; }
+.heat-map-popup .popup-risk-critical { color: #a93232; }
+
+.vulnerability-section {
+  margin-top: 30px;
+  border-top: 1px solid #d9e2ec;
+  padding-top: 24px;
+}
+
+.vulnerability-subtitle {
+  margin: -3px 0 18px;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+}
+
+.vulnerability-insight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  border-left: 4px solid #c05621;
+  padding: 12px 15px;
+  background: #fff8f1;
+}
+
+.insight-icon {
+  display: inline-grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #c05621;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-weight: 700;
+}
+
+.vulnerability-insight p {
+  margin: 0;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.vulnerability-insight strong {
+  color: #102a43;
+}
+
+.vulnerability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.vulnerability-card {
+  min-width: 0;
+  border: 1px solid #d9e2ec;
+  border-top: 4px solid #2f855a;
+  border-radius: 7px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 9px 24px rgba(16, 42, 67, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.vulnerability-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(16, 42, 67, 0.11);
+}
+
+.vulnerability-card.risk-moderate { border-top-color: #b7791f; }
+.vulnerability-card.risk-high { border-top-color: #c05621; }
+.vulnerability-card.risk-critical { border-top-color: #c53030; }
+
+.vulnerability-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+}
+
+.profile-icon {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #eef6f3;
+  font-size: 1.35rem;
+}
+
+.vulnerability-card h4 {
+  margin: 0 0 5px;
+  color: #102a43;
+  font-size: 1.15rem;
+}
+
+.profile-risk-label {
+  color: #2f855a;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.risk-moderate .profile-risk-label { color: #9a6b16; }
+.risk-high .profile-risk-label { color: #b84d20; }
+.risk-critical .profile-risk-label { color: #a93232; }
+
+.impact-score-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.impact-score-row div span,
+.profile-metrics span,
+.recommended-actions > span {
+  display: block;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.impact-score-row strong {
+  color: #102a43;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.impact-score-row small {
+  margin-left: 4px;
+  color: #829ab1;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75rem;
+}
+
+.impact-level-pill {
+  border-radius: 20px;
+  padding: 6px 9px;
+  color: #fff;
+  background: #2f855a;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.risk-moderate .impact-level-pill { background: #b7791f; }
+.risk-high .impact-level-pill { background: #c05621; }
+.risk-critical .impact-level-pill { background: #c53030; }
+
+.impact-progress {
+  height: 7px;
+  margin-top: 11px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #edf2f7;
+}
+
+.impact-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2f855a;
+}
+
+.risk-moderate .impact-progress span { background: #b7791f; }
+.risk-high .impact-progress span { background: #c05621; }
+.risk-critical .impact-progress span { background: #c53030; }
+
+.profile-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 15px;
+}
+
+.profile-metrics strong {
+  display: block;
+  margin-top: 5px;
+  color: #243b53;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.9rem;
+}
+
+.profile-explanation {
+  min-height: 47px;
+  margin: 15px 0;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.48;
+}
+
+.profile-details {
+  border-top: 1px solid #edf2f7;
+  border-bottom: 1px solid #edf2f7;
+  padding: 11px 0;
+}
+
+.profile-details summary {
+  cursor: pointer;
+  color: #1f5f5b;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.profile-details ul,
+.recommended-actions ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.profile-details li,
+.recommended-actions li {
+  margin-top: 5px;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.4;
+}
+
+.recommended-actions {
+  margin-top: 15px;
+}
+
+.recommended-actions > span {
+  color: #1f5f5b;
+}
+
+.vulnerability-empty {
+  border: 1px solid #d9e2ec;
+  border-radius: 7px;
+  padding: 24px;
+  background: #f8fafc;
+}
+
+.vulnerability-empty strong {
+  color: #243b53;
+}
+
+.vulnerability-empty p {
+  margin: 7px 0 0;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+}
+
+.condition-card span {
+  color: #627d98;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.condition-card strong {
+  display: block;
+  margin: 17px 0 8px;
+  overflow-wrap: anywhere;
+  color: #102a43;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1.05;
+}
+
+.condition-primary strong {
+  color: #1f5f5b;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.condition-card small {
+  color: #829ab1;
+  font-size: 0.7rem;
+}
+
+.muted-copy {
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.dashboard-footnote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: #627d98;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.73rem;
+}
+
+.footnote-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2b7a78;
+}
+
+@media (max-width: 680px) {
+  .app-shell {
+    width: min(100% - 22px, 980px);
+    padding-top: 28px;
+  }
+
+  .app-header,
+  .dashboard-heading,
+  .section-heading {
+    display: block;
+  }
+
+  .connection-dot,
+  .updated-label,
+  .conditions-note {
+    display: inline-flex;
+    margin-top: 16px;
+  }
+
+  .search-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .search-row button {
+    min-height: 46px;
+  }
+
+  .risk-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .conditions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .condition-card:last-child {
+    grid-column: span 2;
+  }
+
+  .forecast-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .forecast-card:last-child {
+    grid-column: span 2;
+  }
+
+  .anomaly-comparison {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comparison-divider {
+    display: none;
+  }
+
+  .anomaly-result {
+    grid-column: span 2;
+    border-left: 0;
+    border-top: 1px solid #e2c8a4;
+    padding: 15px 0 0;
+  }
+
+  .anomaly-neutral .anomaly-result {
+    border-top-color: #cfe1dc;
+  }
+
+  .baseline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .heat-map-frame {
+    height: 340px;
+  }
+
+  .heat-map-legend {
+    gap: 10px 14px;
+  }
+
+  .vulnerability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vulnerability-card {
+    padding: 18px;
+  }
+
+  .interventions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intervention-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 410px) {
+  .forecast-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-card:last-child {
+    grid-column: auto;
+  }
+}
+
+/* ==========================================================================
+   Smart Interventions ("What Should I Do?") Section
+   ========================================================================== */
+
+.interventions-section {
+  margin-top: 36px;
+  padding: 28px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.05);
+}
+
+.recommendation-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recommendation-badge.risk-low {
+  background: #def7ec;
+  color: #03543f;
+  border: 1px solid #bcf0da;
+}
+
+.recommendation-badge.risk-moderate {
+  background: #fef08a;
+  color: #713f12;
+  border: 1px solid #fde047;
+}
+
+.recommendation-badge.risk-high {
+  background: #ffedd5;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+
+.recommendation-badge.risk-critical {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.interventions-subtitle {
+  margin: 8px 0 20px;
+  color: #486581;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Filter Chips Bar */
+.interventions-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.filter-chip:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.filter-chip.active {
+  background: #102a43;
+  color: #ffffff;
+  border-color: #102a43;
+  box-shadow: 0 2px 6px rgba(16, 42, 67, 0.2);
+}
+
+/* Interventions Grid */
+.interventions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.intervention-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border-radius: 12px;
+  background: #fafbfc;
+  border: 1px solid #e2e8f0;
+  border-left-width: 5px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.intervention-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 42, 67, 0.08);
+}
+
+.intervention-card.priority-critical {
+  border-left-color: #dc2626;
+  background: linear-gradient(180deg, #fffafa 0%, #ffffff 100%);
+}
+
+.intervention-card.priority-high {
+  border-left-color: #ea580c;
+  background: linear-gradient(180deg, #fffaf5 0%, #ffffff 100%);
+}
+
+.intervention-card.priority-medium {
+  border-left-color: #d97706;
+  background: linear-gradient(180deg, #fffdfa 0%, #ffffff 100%);
+}
+
+.intervention-card.priority-low {
+  border-left-color: #16a34a;
+  background: linear-gradient(180deg, #f9fdfa 0%, #ffffff 100%);
+}
+
+/* Card Header */
+.intervention-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.intervention-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.cat-icon {
+  font-size: 1.1rem;
+}
+
+.priority-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.priority-pill.priority-critical {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-pill.priority-high {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.priority-pill.priority-medium {
+  background: #fef08a;
+  color: #713f12;
+}
+
+.priority-pill.priority-low {
+  background: #def7ec;
+  color: #03543f;
+}
+
+/* Target Box */
+.intervention-target-box {
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.target-label {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.target-name {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.92rem;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Action Box */
+.intervention-action-box {
+  margin-bottom: 14px;
+}
+
+.action-kicker {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #b45309;
+  margin-bottom: 4px;
+}
+
+.action-text {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Reason Box */
+.intervention-reason-box {
+  margin-bottom: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.reason-label {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.reason-text {
+  margin: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Supporting Signal Triggers */
+.intervention-triggers {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #edf2f7;
+}
+
+.triggers-heading {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.trigger-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.trigger-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: #edf2f7;
+  border-radius: 6px;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.74rem;
+  color: #334155;
+  line-height: 1.3;
+}
+
+.trigger-bullet {
+  color: #f59e0b;
+  font-size: 0.7rem;
+}
+
+/* Empty State */
+.interventions-empty {
+  padding: 32px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+}
+
+.interventions-empty strong {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1rem;
+  color: #334155;
+  margin-bottom: 4px;
+}
+
+.interventions-empty p {
+  margin: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+
+
+/* ==========================================================================
+   Early Warning Status Banner
+   ========================================================================== */
+
+.early-warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 18px 22px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 16px rgba(16, 42, 67, 0.05);
+}
+
+.warning-icon {
+  flex: 0 0 auto;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.warning-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.warning-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.warning-title {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.warning-level-tag {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.warning-message {
+  margin: 6px 0 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Risk-level treatments, reusing the app's existing risk palette */
+
+.early-warning-banner.warning-low {
+  background: #def7ec;
+  border-color: #bcf0da;
+  color: #03543f;
+}
+
+.early-warning-banner.warning-moderate {
+  background: #fef08a;
+  border-color: #fde047;
+  color: #713f12;
+}
+
+.early-warning-banner.warning-high {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #9a3412;
+  animation: warning-pulse-high 2.4s ease-in-out infinite;
+}
+
+.early-warning-banner.warning-critical {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #991b1b;
+  box-shadow: 0 4px 20px rgba(197, 48, 48, 0.28);
+  animation: warning-pulse-critical 1.8s ease-in-out infinite;
+}
+
+@keyframes warning-pulse-high {
+  0%, 100% { box-shadow: 0 4px 16px rgba(192, 86, 33, 0.08); }
+  50% { box-shadow: 0 4px 20px rgba(192, 86, 33, 0.22); }
+}
+
+@keyframes warning-pulse-critical {
+  0%, 100% { box-shadow: 0 4px 20px rgba(197, 48, 48, 0.28); }
+  50% { box-shadow: 0 4px 26px rgba(197, 48, 48, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .early-warning-banner.warning-high,
+  .early-warning-banner.warning-critical {
+    animation: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .early-warning-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 18px;
+  }
+
+  .warning-icon {
+    font-size: 1.5rem;
+  }
+}
