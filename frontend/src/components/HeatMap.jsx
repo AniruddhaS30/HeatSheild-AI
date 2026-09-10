@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { CircleMarker, MapContainer, Popup, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, Popup, TileLayer, useMap, CircleMarker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -19,17 +19,11 @@ const RISK_COLORS = {
 
 function MapViewport({ center }) {
   const map = useMap()
-
   useEffect(() => {
     map.setView(center, 12)
-    window.setTimeout(() => map.invalidateSize(), 0)
+    setTimeout(() => map.invalidateSize(), 0)
   }, [center, map])
-
   return null
-}
-
-function friendlyStress(value) {
-  return value.replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
 
 function HeatMapPopup({ point }) {
@@ -39,9 +33,8 @@ function HeatMapPopup({ point }) {
       <dl>
         <div><dt>Temperature</dt><dd>{point.temperature_c}°C</dd></div>
         <div><dt>Feels Like</dt><dd>{point.feels_like_utci_c}°C</dd></div>
-        <div><dt>Thermal Stress</dt><dd>{friendlyStress(point.stress_category)}</dd></div>
-        <div><dt>Heat Risk Score</dt><dd>{point.risk_score}/100</dd></div>
-        <div><dt>Risk Level</dt><dd className={`popup-risk-${point.risk_level.toLowerCase()}`}>{point.risk_level}</dd></div>
+        <div><dt>Risk Score</dt><dd>{point.risk_score}/100</dd></div>
+        <div><dt>Risk Level</dt><dd>{point.risk_level}</dd></div>
       </dl>
     </div>
   )
@@ -75,14 +68,8 @@ export default function HeatMap({ location }) {
     return () => { active = false }
   }, [location])
 
-  if (loading) {
-    return <div className="heat-map-status">Loading hyperlocal heat map...</div>
-  }
-
-  if (error) {
-    return <div className="heat-map-error" role="alert">{error}</div>
-  }
-
+  if (loading) return <div className="heat-map-status">Loading hyperlocal heat map...</div>
+  if (error) return <div className="heat-map-error" role="alert">{error}</div>
   if (!mapData) return null
 
   const center = [mapData.center.latitude, mapData.center.longitude]
@@ -98,16 +85,17 @@ export default function HeatMap({ location }) {
           />
           {mapData.points.map((point) => {
             const color = RISK_COLORS[point.risk_level] || RISK_COLORS.MODERATE
+            const radius = 8 + (point.risk_score / 100) * 6
             return (
               <CircleMarker
                 key={`${point.name}-${point.latitude}-${point.longitude}`}
                 center={[point.latitude, point.longitude]}
-                radius={11}
+                radius={radius}
                 pathOptions={{
                   color,
                   fillColor: color,
-                  fillOpacity: 0.78,
-                  weight: 3,
+                  fillOpacity: 0.7,
+                  weight: 2,
                 }}
               >
                 <Popup><HeatMapPopup point={point} /></Popup>
