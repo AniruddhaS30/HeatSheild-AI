@@ -1,3 +1,6 @@
+import logging
+
+logger = logging.getLogger(__name__)
 from datetime import date, datetime, timezone
 
 from fastapi import APIRouter, HTTPException
@@ -40,21 +43,22 @@ async def get_analysis(
 
     try:
         current_raw = await fetch_current_weather(lat, lon)
-    except Exception:
+    except Exception as e:
+        logger.exception("fetch_current_weather failed for %s (%s, %s)", display_name, lat, lon)
         current_raw = None
         unavailable.append("Current weather")
 
     try:
         forecast_raw = await fetch_forecast(lat, lon, days=5)
         forecast_days = build_forecast_days(forecast_raw)
-    except Exception:
+    except Exception as e:
         forecast_raw = []
         forecast_days = []
         unavailable.append("Forecast")
 
     try:
         baseline = await fetch_historical_baseline(lat, lon, today)
-    except Exception:
+    except Exception as e:
         baseline = None
         unavailable.append("Historical baseline")
 
