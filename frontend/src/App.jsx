@@ -3,7 +3,7 @@ import axios from 'axios'
 import Dashboard from './components/Dashboard.jsx'
 import LocationSearch from './components/LocationSearch.jsx'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000'
+const API_BASE_URL = "https://heatsheild-ai.onrender.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
