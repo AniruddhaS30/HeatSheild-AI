@@ -99,7 +99,7 @@ async def geocode_location(name: str) -> dict:
 
     # 1. India-first resolution using Nominatim with country code IN
     try:
-        async with httpx.AsyncClient(timeout=8) as client:
+        async with httpx.AsyncClient(timeout=25) as client:
             resp = await client.get(
                 NOMINATIM_GEOCODE_URL,
                 params={
@@ -145,7 +145,7 @@ async def geocode_location(name: str) -> dict:
 
     # 2. Multi-result search via Open-Meteo prioritizing India
     try:
-        async with httpx.AsyncClient(timeout=8) as client:
+        async with httpx.AsyncClient(timeout=25) as client:
             resp = await client.get(
                 GEOCODE_URL,
                 params={"name": clean, "count": 20, "language": "en"},
@@ -178,7 +178,7 @@ async def geocode_location(name: str) -> dict:
 
     # 3. Global Nominatim fallback for non-Indian searches
     try:
-        async with httpx.AsyncClient(timeout=8) as client:
+        async with httpx.AsyncClient(timeout=25) as client:
             resp = await client.get(
                 NOMINATIM_GEOCODE_URL,
                 params={
@@ -216,7 +216,7 @@ async def fetch_current_weather(lat: float, lon: float) -> dict:
         "wind_speed_unit": "ms",
         "timezone": "auto",
     }
-    async with httpx.AsyncClient(timeout=10) as client:
+    async with httpx.AsyncClient(timeout=25) as client:
         resp = await client.get(FORECAST_URL, params=params)
         resp.raise_for_status()
         data = resp.json()
@@ -256,7 +256,7 @@ async def fetch_current_weather_batch(points: list[tuple[float, float]]) -> list
         except httpx.HTTPError:
             return None
 
-    async with httpx.AsyncClient(timeout=10) as client:
+    async with httpx.AsyncClient(timeout=25) as client:
         return await asyncio.gather(*[_fetch(client, lat, lon) for lat, lon in points])
 
 
@@ -270,7 +270,7 @@ async def fetch_forecast(lat: float, lon: float, days: int = 5) -> list[dict]:
         "wind_speed_unit": "ms",
         "timezone": "auto",
     }
-    async with httpx.AsyncClient(timeout=10) as client:
+    async with httpx.AsyncClient(timeout=25) as client:
         resp = await client.get(FORECAST_URL, params=params)
         resp.raise_for_status()
         data = resp.json()
@@ -329,7 +329,7 @@ async def fetch_historical_baseline(lat: float, lon: float, target_date: date, y
         }
 
     years = [target_date.year - y for y in range(1, years_back + 1)]
-    async with httpx.AsyncClient(timeout=15) as client:
+    async with httpx.AsyncClient(timeout=25) as client:
         results = await asyncio.gather(*[_one_year(client, year) for year in years])
     records = [record for record in results if record is not None]
 
